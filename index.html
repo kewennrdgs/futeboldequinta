@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futebol de quinta</title>
@@ -113,7 +114,8 @@
 
         tr:hover { background-color: rgba(82, 183, 136, 0.08); }
 
-        .editable {
+        /* Estilo para quando estiver em MODO EDIÇÃO */
+        .admin-mode .editable {
             background-color: rgba(255, 255, 255, 0.8);
             border: 1px dashed #cbd5e1;
             border-radius: 4px;
@@ -122,10 +124,23 @@
             outline: none;
         }
 
-        .editable:focus {
+        .admin-mode .editable:focus {
             border: 1px solid var(--accent);
             background-color: #fff;
             box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
+        }
+
+        /* Estilo para quando estiver em MODO VISITANTE (Leitura) */
+        body:not(.admin-mode) .editable {
+            border: none;
+            background: transparent;
+            padding: 5px 6px;
+        }
+
+        /* Esconder elementos de admin para visitantes */
+        body:not(.admin-mode) .admin-only,
+        body:not(.admin-mode) .col-actions {
+            display: none !important;
         }
 
         .calculated {
@@ -178,7 +193,7 @@
         /* Estilos especiais para exportação em PDF */
         .pdf-export-active .actions,
         .pdf-export-active .config-panel,
-        .pdf-export-active .btn-delete {
+        .pdf-export-active .col-actions {
             display: none !important;
         }
 
@@ -202,8 +217,8 @@
     </div>
 
     <div class="actions">
-        <button class="btn" onclick="addAthlete()">➕ Adicionar Atleta</button>
-        <button class="btn btn-github" onclick="publishToGitHub()">🚀 Publicar no GitHub</button>
+        <button class="btn admin-only" onclick="addAthlete()">➕ Adicionar Atleta</button>
+        <button class="btn btn-github admin-only" onclick="publishToGitHub()">🚀 Publicar no GitHub</button>
         <button class="btn btn-pdf" onclick="downloadPDF()">📄 Baixar PDF</button>
     </div>
 
@@ -220,196 +235,196 @@
                     <th style="text-align: center;">Gols</th>
                     <th style="text-align: center;">Pontos</th>
                     <th style="text-align: center;">Aprov. (%)</th>
-                    <th style="text-align: center;" class="col-actions">Ações</th>
+                    <th style="text-align: center;" class="col-actions admin-only">Ações</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            <tr>
+                <tr>
                     <td class="rank rank-1">1</td>
-                    <td class="editable" contenteditable="true">Yohann</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">11</td>
+                    <td class="editable">Juliano</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">6</td>
                     <td class="calculated" style="text-align: center;">100%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank rank-2">2</td>
-                    <td class="editable" contenteditable="true">Juliano</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">5</td>
+                    <td class="editable">Yohann</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">6</td>
                     <td class="calculated" style="text-align: center;">100%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank rank-3">3</td>
-                    <td class="editable" contenteditable="true">Kewenn</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
+                    <td class="editable">Danilo</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
                     <td class="calculated" style="text-align: center;">50%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">4</td>
-                    <td class="editable" contenteditable="true">Magu</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Kewenn</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
-                    <td class="calculated" style="text-align: center;">100%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td class="calculated" style="text-align: center;">50%</td>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">5</td>
-                    <td class="editable" contenteditable="true">Paulo🧤</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Magu</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
                     <td class="calculated" style="text-align: center;">100%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">6</td>
-                    <td class="editable" contenteditable="true">Danilo</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Vini</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
                     <td class="calculated" style="text-align: center;">50%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">7</td>
-                    <td class="editable" contenteditable="true">Vini</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Cassiano&nbsp;🧤</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
                     <td class="calculated" style="text-align: center;">50%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">8</td>
-                    <td class="editable" contenteditable="true">Cassiano&nbsp;🧤</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Paulo🧤</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">3</td>
-                    <td class="calculated" style="text-align: center;">50%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td class="calculated" style="text-align: center;">100%</td>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">9</td>
-                    <td class="editable" contenteditable="true">Léo</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">2</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">5</td>
+                    <td class="editable">Léo</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">2</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">10</td>
-                    <td class="editable" contenteditable="true">Cristian</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Pão</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">11</td>
-                    <td class="editable" contenteditable="true">Popaye</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Paulo</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">12</td>
-                    <td class="editable" contenteditable="true">Pão</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Jeferson</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">13</td>
-                    <td class="editable" contenteditable="true">Paulo</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Marco</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">1</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">14</td>
-                    <td class="editable" contenteditable="true">Jeferson</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Cristian</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr><tr>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+                <tr>
                     <td class="rank">15</td>
-                    <td class="editable" contenteditable="true">Marco</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">1</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
-                    <td class="editable" contenteditable="true" style="text-align: center;">0</td>
+                    <td class="editable">Popaye</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
+                    <td class="editable" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0</td>
                     <td class="calculated" style="text-align: center;">0%</td>
-                    <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
-                </tr></tbody>
+                    <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
-    <!-- Painel de Configuração do GitHub (Aparece somente para você configurar no início) -->
-    <div class="config-panel" id="configPanel">
+    <!-- Painel de Configuração do GitHub -->
+    <div class="config-panel admin-only" id="configPanel">
         <strong>⚙️ Configuração de Conexão com GitHub:</strong><br><br>
         <input type="text" id="ghUser" placeholder="Seu Usuário do GitHub">
         <input type="text" id="ghRepo" placeholder="Nome do Repositório (ex: futebol-de-quinta)">
@@ -419,6 +434,25 @@
 </div>
 
 <script>
+    function checkAdminMode() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isAdmin = urlParams.get('admin') === 'true';
+
+        if (isAdmin) {
+            document.body.classList.add('admin-mode');
+            // Ativa edição apenas no modo admin
+            document.querySelectorAll('.editable').forEach(cell => {
+                cell.setAttribute('contenteditable', 'true');
+            });
+        } else {
+            document.body.classList.remove('admin-mode');
+            // Desativa edição no modo visitante
+            document.querySelectorAll('.editable').forEach(cell => {
+                cell.removeAttribute('contenteditable');
+            });
+        }
+    }
+
     function updateCalculationsAndSort() {
         const tbody = document.getElementById('tableBody');
         const rows = Array.from(tbody.querySelectorAll('tr'));
@@ -483,7 +517,7 @@
             <td class="editable" contenteditable="true" style="text-align: center;">0</td>
             <td class="calculated" style="text-align: center;">0</td>
             <td class="calculated" style="text-align: center;">0%</td>
-            <td style="text-align: center;" class="col-actions"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
+            <td style="text-align: center;" class="col-actions admin-only"><button class="btn-delete" onclick="deleteRow(this)">🗑️</button></td>
         `;
         tbody.appendChild(tr);
         attachEvents(tr);
@@ -508,7 +542,6 @@
         });
     }
 
-    // Lógica de Configuração do GitHub Local Storage
     function saveConfig() {
         const user = document.getElementById('ghUser').value.trim();
         const repo = document.getElementById('ghRepo').value.trim();
@@ -522,7 +555,7 @@
         localStorage.setItem('gh_user', user);
         localStorage.setItem('gh_repo', repo);
         localStorage.setItem('gh_token', token);
-        alert('Dados do GitHub salvos com sucesso no seu dispositivo!');
+        alert('Dados salvos!');
     }
 
     function loadConfig() {
@@ -531,7 +564,6 @@
         if(localStorage.getItem('gh_token')) document.getElementById('ghToken').value = localStorage.getItem('gh_token');
     }
 
-    // Função de Publicação Automática no GitHub
     async function publishToGitHub() {
         updateCalculationsAndSort();
 
@@ -540,7 +572,7 @@
         const token = localStorage.getItem('gh_token') || document.getElementById('ghToken').value.trim();
 
         if (!user || !repo || !token) {
-            alert('Preencha e salve os dados do GitHub no painel no final da página antes de publicar.');
+            alert('Preencha e salve os dados do GitHub!');
             return;
         }
 
@@ -548,7 +580,6 @@
         const url = `https://api.github.com/repos/${user}/${repo}/contents/${path}`;
 
         try {
-            // 1. Obter o SHA do arquivo atual
             let sha = '';
             const getRes = await fetch(url, {
                 headers: { 'Authorization': `token ${token}` }
@@ -559,16 +590,12 @@
                 sha = getData.sha;
             }
 
-            // 2. Prepara o conteúdo HTML limpo
             const cleanHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-            
-            // Converte string para base64 com suporte UTF-8
             const utf8Bytes = new TextEncoder().encode(cleanHtml);
             let binary = '';
             utf8Bytes.forEach(b => binary += String.fromCharCode(b));
             const contentBase64 = btoa(binary);
 
-            // 3. Envia atualização via API
             const bodyData = {
                 message: 'Atualização do ranking semanal',
                 content: contentBase64,
@@ -585,13 +612,13 @@
             });
 
             if (putRes.ok) {
-                alert('🚀 Sucesso! O ranking foi atualizado no GitHub. O link estará atualizado para todos em cerca de 1 minuto.');
+                alert('🚀 Sucesso! O ranking foi atualizado. O site estará pronto para todos em cerca de 1 minuto.');
             } else {
                 const errData = await putRes.json();
                 alert('Erro ao publicar: ' + (errData.message || 'Verifique suas credenciais.'));
             }
         } catch (error) {
-            alert('Erro de conexão com o GitHub: ' + error.message);
+            alert('Erro de conexão: ' + error.message);
         }
     }
 
@@ -614,6 +641,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        checkAdminMode();
         const rows = document.querySelectorAll('#tableBody tr');
         rows.forEach(attachEvents);
         updateCalculationsAndSort();
@@ -621,5 +649,5 @@
     });
 </script>
 
-
-</body></html>
+</body>
+</html>
